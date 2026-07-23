@@ -1,1 +1,1 @@
-# Register -> Login -> JWT created -> JWT used for further actions
+# Register -> Login -> JWT created -> JWT used for further action
