@@ -6,8 +6,9 @@ I'm building a backend API to track my own job application pipeline, companies I
 
 This is a from-scratch project. No course, no follow-along, no reference implementation open in a side window. I've completed a JWT-authenticated Todo API as a guided course project before this, and this build exists specifically to test how much of that actually stuck when there's no instructor's code to lean on.
 
-*if you are interested in previous project (follow-along with course)*
-TodoAPI App:'saddab-ansari/Backend-Architecture/02_FastAPI_Fundamentals/06_Todo_API_with_JWT_Authentication'
+*If you're interested in the previous project (a follow-along with a course):*
+
+**Todo API App** → [`02_FastAPI_Fundamentals/06_Todo_API_with_JWT_Authentication`](https://github.com/saddab-ansari/Backend-Architecture/tree/main/02_FastAPI_Fundamentals/06_Todo_API_with_JWT_Authentication)
 
 ## Tech stack
 
