@@ -17,7 +17,7 @@ A backend API for tracking my own job application pipeline — companies, roles,
 - [ ] Filtering, sorting, pagination
 - [ ] Dashboard stats endpoint
 
-*Planning complete. Build starting now — this section updates as features land.*
+*Added Database, Models and Authentication (with JWT). Moving towards Company CRUD*
 
 ## Setup
 
