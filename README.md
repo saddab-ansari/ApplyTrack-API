@@ -11,13 +11,13 @@ A backend API for tracking my own job application pipeline — companies, roles,
 ## Current status — where I'm at right now
 
 - [x] Auth (register, login, JWT) + `.env` config
-- [ ] Company CRUD
+- [x] Company CRUD
 - [ ] Application CRUD + status transitions
 - [ ] Interview rounds (nested under applications)
 - [ ] Filtering, sorting, pagination
 - [ ] Dashboard stats endpoint
 
-*Added Database, Models and Authentication (with JWT). Moving towards Company CRUD*
+*Added Database, Models, Authentication (with JWT) And Company CRUD Moving towards application router*
 
 ## Setup
 
