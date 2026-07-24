@@ -10,7 +10,7 @@ A backend API for tracking my own job application pipeline — companies, roles,
 
 ## Current status — where I'm at right now
 
-- [ ] Auth (register, login, JWT) + `.env` config
+- [x] Auth (register, login, JWT) + `.env` config
 - [ ] Company CRUD
 - [ ] Application CRUD + status transitions
 - [ ] Interview rounds (nested under applications)
