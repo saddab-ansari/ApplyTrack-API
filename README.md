@@ -2,6 +2,7 @@
 
 **Stack:** FastAPI · SQLAlchemy · SQLite · JWT Auth · python-dotenv
 
+
 A backend API for tracking my own job application pipeline — companies, roles, and interview rounds, built from scratch without a course. Full scope, constraints, and feature breakdown: [`problem_statement.md`](./problem_statement.md)
 
 ## Data model
@@ -12,12 +13,12 @@ A backend API for tracking my own job application pipeline — companies, roles,
 
 - [x] Auth (register, login, JWT) + `.env` config
 - [x] Company CRUD
-- [ ] Application CRUD + status transitions
+- [x] Application CRUD + status transitions
 - [ ] Interview rounds (nested under applications)
 - [ ] Filtering, sorting, pagination
 - [ ] Dashboard stats endpoint
 
-*Added Database, Models, Authentication (with JWT) And Company CRUD Moving towards application router*
+*Added Database, Models, Authentication (with JWT), Company CRUD And application CRUD Moving towards Interview Rounds router*
 
 ## Setup
 
