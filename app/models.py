@@ -1,5 +1,5 @@
-from sqlalchemy import DateTime
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from database import Base
 
 # User → Company → Application → InterviewRound
@@ -30,8 +30,9 @@ class Application(Base):
     job_role = Column(String)
     salary = Column(Integer)
     status = Column(String, default="applied")
+    rounds = relationship("InterviewRound", back_populates="application")
 
-class Interview_Round(Base):
+class InterviewRound(Base):
     __tablename__ = 'interview_round'
 
     id = Column(Integer, index=True, primary_key=True, unique=True)
@@ -39,3 +40,4 @@ class Interview_Round(Base):
     stage = Column(String) 
     date = Column(DateTime)
     result = Column(String) # Because either its positive or negative but can also be pending   
+    application = relationship("Application", back_populates="rounds")
