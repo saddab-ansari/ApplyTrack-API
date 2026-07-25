@@ -1,6 +1,7 @@
 # Application CRUD
 
 from typing import Annotated
+from datetime import datetime
 from fastapi import Depends, APIRouter, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
@@ -27,13 +28,39 @@ class ApplicationRequest(BaseModel):
     company_id : int
     job_role : str
     salary : int
+
 # No Status here - User might enter wrong status or forget to fill it in entirely - and lose all the data of its status.
 # No id required - SQLAlchemy does it automatically (faster and safer)
 
 class StatusUpdateRequest(BaseModel):
     status: str
 
-# GET /application/          — all applications belonging to the logged-in user
+# Response schemas — needed so FastAPI actually serializes the nested `rounds`
+# relationship instead of silently dropping it (SQLAlchemy relationships are
+# lazy-loaded; without an explicit schema asking for `.rounds`, it never gets touched).
+
+class InterviewRoundResponse(BaseModel):
+    id: int
+    stage: str
+    date: datetime
+    result: str
+
+    class Config:
+        from_attributes = True
+
+
+class ApplicationResponse(BaseModel):
+    id: int
+    company_id: int
+    job_role: str
+    salary: int
+    status: str
+    rounds: list[InterviewRoundResponse] = []
+
+    class Config:
+        from_attributes = True
+
+# GET /application/ 
 
 @router.get('/', status_code=status.HTTP_200_OK)
 async def get_all_application(db : db_dependency, user : user_dependency):
@@ -44,9 +71,10 @@ async def get_all_application(db : db_dependency, user : user_dependency):
         raise HTTPException(status_code=404, detail='Application not found')
     return application_model
 
-# GET /application/{id}      — single application, same ownership check
+# GET /application/{id}      
+# single application, same ownership check
 
-@router.get('/{id}', status_code=status.HTTP_200_OK)
+@router.get('/{id}', status_code=status.HTTP_200_OK, response_model=ApplicationResponse)
 async def get_application(db: db_dependency, user: user_dependency, id: int):
     application_model = db.query(Application).join(Company) \
         .filter(Application.id == id) \
@@ -55,7 +83,7 @@ async def get_application(db: db_dependency, user: user_dependency, id: int):
         raise HTTPException(status_code=404, detail='Application not found')
     return application_model
 
-# POST /application/         — create application
+# POST /application/   
 # BEFORE creating: Worked on User authentication, to avoid users modifying others applications. 
 
 @router.post('/', status_code=status.HTTP_201_CREATED)
@@ -69,7 +97,8 @@ async def create_application(db: db_dependency, user: user_dependency, applicati
     db.commit()
 
 
-# PUT /application/{id}      — update job_role, salary, company_id (NOT status)
+# PUT /application/{id}      
+# update job_role, salary, company_id (NOT status)
 
 @router.put('/{id}', status_code=status.HTTP_204_NO_CONTENT)
 async def update_application(db : db_dependency, user : user_dependency, id : int, update_request : ApplicationRequest):
