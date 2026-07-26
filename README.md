@@ -18,7 +18,7 @@ A backend API for tracking my own job application pipeline — companies, roles,
 - [x] Filtering, sorting, pagination
 - [x] Dashboard stats endpoint
 
-*Project Completed: Now in deploying phase.*
+*Project Completed - Now in deployment phase.*
 
 ## Setup
 
