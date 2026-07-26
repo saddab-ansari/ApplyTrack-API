@@ -1,8 +1,18 @@
+import enum
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Enum
 from database import Base
 
 # User → Company → Application → InterviewRound
+
+class ApplicationStatus(str, enum.Enum):
+    wishlist = "wishlist"
+    applied = "applied"
+    oa = "oa"
+    interviewing = "interviewing"
+    offer = "offer"
+    rejected = "rejected"
+    withdrawn = "withdrawn"
 
 class Users(Base):
     __tablename__ = 'users'
@@ -29,7 +39,7 @@ class Application(Base):
     company_id = Column(Integer,ForeignKey('company.id'))
     job_role = Column(String)
     salary = Column(Integer)
-    status = Column(String, default="applied")
+    status = Column(Enum(ApplicationStatus), default=ApplicationStatus.applied)
     rounds = relationship("InterviewRound", back_populates="application")
 
 class InterviewRound(Base):
