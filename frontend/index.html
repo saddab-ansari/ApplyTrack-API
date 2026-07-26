@@ -1,0 +1,723 @@
+<!-- This is an AI generated Code for Frontend. -->
+<!-- Being used to make the app accessible to non-backend people-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ApplyTrack By Saddab Ansari</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --border: #e2e5ea;
+    --text: #1f2430;
+    --muted: #6b7280;
+    --accent: #2f6fed;
+    --accent-hover: #2559c2;
+    --danger: #e5484d;
+    --danger-hover: #c53a3e;
+    --radius: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+  }
+
+  header h1 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  #logout-btn { display: none; }
+
+  #cold-start-banner {
+    background: #fff7e6;
+    border-bottom: 1px solid #f2d9a3;
+    color: #7a5b12;
+    font-size: 13px;
+    padding: 10px 24px;
+    text-align: center;
+  }
+
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 24px 16px 64px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  h2 { font-size: 16px; margin: 0 0 14px; }
+  h3 { font-size: 14px; margin: 0 0 10px; color: var(--muted); font-weight: 600; }
+
+  label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 4px;
+    margin-top: 10px;
+  }
+
+  input, select {
+    width: 100%;
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    background: #fff;
+    color: var(--text);
+  }
+
+  input:focus, select:focus, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    background: var(--accent);
+    color: #fff;
+    margin-top: 14px;
+  }
+
+  button:hover { background: var(--accent-hover); }
+
+  button.secondary {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+  button.secondary:hover { background: #eef3ff; }
+
+  button.danger { background: var(--danger); }
+  button.danger:hover { background: var(--danger-hover); }
+
+  button.small {
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-top: 0;
+  }
+
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .row > * { flex: 1; min-width: 140px; }
+
+  .error-text {
+    color: var(--danger);
+    font-size: 13px;
+    margin-top: 10px;
+    display: none;
+  }
+
+  .toggle-link {
+    font-size: 13px;
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 12px;
+    display: inline-block;
+  }
+
+  .stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .stat-pill {
+    background: #eef3ff;
+    color: var(--accent);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  .list-item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+
+  .list-item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .list-item-title { font-weight: 600; font-size: 14px; }
+  .list-item-sub { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: #eef3ff;
+    color: var(--accent);
+    text-transform: capitalize;
+  }
+
+  .round-item {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 8px;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .rounds-box {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .empty-note {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  #dashboard-view { display: none; }
+
+  @media (max-width: 480px) {
+    header { padding: 12px 16px; }
+    main { padding: 16px 10px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ApplyTrack by Saddab</h1> 
+  <button id="logout-btn" class="secondary small" onclick="handleLogout()">Log out</button>
+</header>
+
+<div id="cold-start-banner">
+  Heads up — this backend runs on a free-tier server that sleeps when idle. Your first request may take up to ~1 minute while it wakes up. After that, everything responds instantly.
+</div>
+
+<main>
+
+  <section id="auth-view">
+    <div class="card" id="login-card">
+      <h2>Log in</h2>
+      <label for="login-username">Username</label>
+      <input id="login-username" type="text" />
+      <label for="login-password">Password</label>
+      <input id="login-password" type="password" />
+      <button onclick="handleLogin()">Log in</button>
+      <div class="error-text" id="login-error"></div>
+      <span class="toggle-link" onclick="toggleAuthCards()">New here? Create an account</span>
+    </div>
+
+    <div class="card" id="register-card" style="display:none;">
+      <h2>Create account</h2>
+      <div class="row">
+        <div>
+          <label for="reg-first">First name</label>
+          <input id="reg-first" type="text" />
+        </div>
+        <div>
+          <label for="reg-last">Last name</label>
+          <input id="reg-last" type="text" />
+        </div>
+      </div>
+      <label for="reg-username">Username</label>
+      <input id="reg-username" type="text" />
+      <label for="reg-email">Email</label>
+      <input id="reg-email" type="email" />
+      <label for="reg-password">Password</label>
+      <input id="reg-password" type="password" />
+      <button onclick="handleRegister()">Create account</button>
+      <div class="error-text" id="register-error"></div>
+      <span class="toggle-link" onclick="toggleAuthCards()">Already have an account? Log in</span>
+    </div>
+  </section>
+
+  <section id="dashboard-view">
+
+    <div class="card">
+      <h2>Overview</h2>
+      <div class="stats-row" id="stats-row">
+        <span class="empty-note">No applications yet.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Companies</h2>
+      <div id="companies-list"></div>
+      <h3>Add a company</h3>
+      <div class="row">
+        <div>
+          <label for="company-name">Name</label>
+          <input id="company-name" type="text" />
+        </div>
+        <div>
+          <label for="company-location">Location</label>
+          <input id="company-location" type="text" />
+        </div>
+      </div>
+      <button onclick="handleAddCompany()">Add company</button>
+      <div class="error-text" id="company-error"></div>
+    </div>
+
+    <div class="card">
+      <h2>Applications</h2>
+
+      <div class="row" style="margin-bottom: 14px;">
+        <div>
+          <label for="filter-status">Filter by status</label>
+          <select id="filter-status" onchange="loadApplications()">
+            <option value="">All</option>
+            <option value="wishlist">Wishlist</option>
+            <option value="applied">Applied</option>
+            <option value="oa">OA</option>
+            <option value="interviewing">Interviewing</option>
+            <option value="offer">Offer</option>
+            <option value="rejected">Rejected</option>
+            <option value="withdrawn">Withdrawn</option>
+          </select>
+        </div>
+        <div>
+          <label for="sort-by">Sort by</label>
+          <select id="sort-by" onchange="loadApplications()">
+            <option value="id">Newest</option>
+            <option value="salary">Salary</option>
+            <option value="job_role">Job role</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="applications-list"></div>
+
+      <h3>Add an application</h3>
+      <div class="row">
+        <div>
+          <label for="app-company">Company</label>
+          <select id="app-company"></select>
+        </div>
+        <div>
+          <label for="app-role">Job role</label>
+          <input id="app-role" type="text" />
+        </div>
+        <div>
+          <label for="app-salary">Salary</label>
+          <input id="app-salary" type="number" />
+        </div>
+      </div>
+      <button onclick="handleAddApplication()">Add application</button>
+      <div class="error-text" id="application-error"></div>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  // ---- CONFIG ----
+  // Set this to your deployed FastAPI URL once it's live (e.g. https://applytrack-api.onrender.com)
+  const API_BASE = "http://localhost:8000";
+
+  // ---- STATE ----
+  let token = localStorage.getItem("applytrack_token") || null;
+  let companiesCache = [];
+
+  const STATUS_OPTIONS = ["wishlist", "applied", "oa", "interviewing", "offer", "rejected", "withdrawn"];
+
+  // ---- API HELPER ----
+  async function apiFetch(path, options = {}) {
+    const headers = options.headers || {};
+    if (token) headers["Authorization"] = "Bearer " + token;
+    if (options.body && !options.isForm) headers["Content-Type"] = "application/json";
+
+    const res = await fetch(API_BASE + path, { ...options, headers });
+
+    if (!res.ok) {
+      let detail = "Something went wrong.";
+      try {
+        const data = await res.json();
+        detail = data.detail || detail;
+      } catch (e) {}
+      throw new Error(detail);
+    }
+
+    if (res.status === 204) return null;
+    return res.json();
+  }
+
+  // ---- AUTH ----
+  function toggleAuthCards() {
+    const login = document.getElementById("login-card");
+    const register = document.getElementById("register-card");
+    login.style.display = login.style.display === "none" ? "block" : "none";
+    register.style.display = register.style.display === "none" ? "block" : "none";
+  }
+
+  async function handleRegister() {
+    const errorBox = document.getElementById("register-error");
+    errorBox.style.display = "none";
+
+    const payload = {
+      first_name: document.getElementById("reg-first").value,
+      last_name: document.getElementById("reg-last").value,
+      username: document.getElementById("reg-username").value,
+      email: document.getElementById("reg-email").value,
+      password: document.getElementById("reg-password").value,
+      role: "user"
+    };
+
+    try {
+      await apiFetch("/auth/", { method: "POST", body: JSON.stringify(payload) });
+      toggleAuthCards();
+      document.getElementById("login-username").value = payload.username;
+    } catch (err) {
+      errorBox.textContent = err.message;
+      errorBox.style.display = "block";
+    }
+  }
+
+  async function handleLogin() {
+    const errorBox = document.getElementById("login-error");
+    errorBox.style.display = "none";
+
+    const username = document.getElementById("login-username").value;
+    const password = document.getElementById("login-password").value;
+
+    const form = new URLSearchParams();
+    form.append("username", username);
+    form.append("password", password);
+
+    try {
+      const data = await apiFetch("/auth/token", {
+        method: "POST",
+        body: form,
+        isForm: true,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+      });
+      token = data.access_token;
+      localStorage.setItem("applytrack_token", token);
+      showDashboard();
+    } catch (err) {
+      errorBox.textContent = "Login failed. Check your username and password.";
+      errorBox.style.display = "block";
+    }
+  }
+
+  function handleLogout() {
+    token = null;
+    localStorage.removeItem("applytrack_token");
+    document.getElementById("dashboard-view").style.display = "none";
+    document.getElementById("auth-view").style.display = "block";
+    document.getElementById("logout-btn").style.display = "none";
+  }
+
+  function showDashboard() {
+    document.getElementById("auth-view").style.display = "none";
+    document.getElementById("dashboard-view").style.display = "block";
+    document.getElementById("logout-btn").style.display = "inline-block";
+    loadCompanies();
+    loadApplications();
+    loadStats();
+  }
+
+  // ---- COMPANIES ----
+  async function loadCompanies() {
+    try {
+      const companies = await apiFetch("/company/");
+      companiesCache = companies;
+      renderCompanies(companies);
+      renderCompanyDropdown(companies);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  function renderCompanies(companies) {
+    const box = document.getElementById("companies-list");
+    if (!companies.length) {
+      box.innerHTML = '<span class="empty-note">No companies yet — add one below.</span>';
+      return;
+    }
+    box.innerHTML = companies.map(c => `
+      <div class="list-item">
+        <div class="list-item-top">
+          <div>
+            <div class="list-item-title">${escapeHtml(c.name)}</div>
+            <div class="list-item-sub">${escapeHtml(c.location)}</div>
+          </div>
+          <button class="danger small" onclick="handleDeleteCompany(${c.id})">Delete</button>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  function renderCompanyDropdown(companies) {
+    const select = document.getElementById("app-company");
+    if (!companies.length) {
+      select.innerHTML = '<option value="">Add a company first</option>';
+      return;
+    }
+    select.innerHTML = companies.map(c => `<option value="${c.id}">${escapeHtml(c.name)}</option>`).join("");
+  }
+
+  async function handleAddCompany() {
+    const errorBox = document.getElementById("company-error");
+    errorBox.style.display = "none";
+
+    const payload = {
+      name: document.getElementById("company-name").value,
+      location: document.getElementById("company-location").value
+    };
+
+    try {
+      await apiFetch("/company/", { method: "POST", body: JSON.stringify(payload) });
+      document.getElementById("company-name").value = "";
+      document.getElementById("company-location").value = "";
+      loadCompanies();
+    } catch (err) {
+      errorBox.textContent = err.message;
+      errorBox.style.display = "block";
+    }
+  }
+
+  async function handleDeleteCompany(id) {
+    try {
+      await apiFetch("/company/" + id, { method: "DELETE" });
+      loadCompanies();
+      loadApplications();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  // ---- APPLICATIONS ----
+  async function loadApplications() {
+    const status = document.getElementById("filter-status").value;
+    const sortBy = document.getElementById("sort-by").value;
+
+    const params = new URLSearchParams();
+    if (status) params.append("application_status", status);
+    params.append("sort_by", sortBy);
+    params.append("limit", "50");
+
+    try {
+      const apps = await apiFetch("/application/?" + params.toString());
+      renderApplications(apps);
+    } catch (err) {
+      document.getElementById("applications-list").innerHTML =
+        '<span class="empty-note">No applications match this filter yet.</span>';
+    }
+    loadStats();
+  }
+
+  function companyName(companyId) {
+    const match = companiesCache.find(c => c.id === companyId);
+    return match ? match.name : "Unknown company";
+  }
+
+  function renderApplications(apps) {
+    const box = document.getElementById("applications-list");
+    if (!apps.length) {
+      box.innerHTML = '<span class="empty-note">No applications yet — add one below.</span>';
+      return;
+    }
+    box.innerHTML = apps.map(a => `
+      <div class="list-item" id="app-${a.id}">
+        <div class="list-item-top">
+          <div>
+            <div class="list-item-title">${escapeHtml(a.job_role)}</div>
+            <div class="list-item-sub">${escapeHtml(companyName(a.company_id))} &middot; ₹${a.salary}</div>
+          </div>
+          <div class="row" style="flex:none; gap:8px;">
+            <select style="width:auto;" onchange="handleStatusChange(${a.id}, this.value)">
+              ${STATUS_OPTIONS.map(s => `<option value="${s}" ${s === a.status ? "selected" : ""}>${s}</option>`).join("")}
+            </select>
+            <button class="danger small" onclick="handleDeleteApplication(${a.id})">Delete</button>
+          </div>
+        </div>
+
+        <div class="rounds-box">
+          <h3>Interview rounds</h3>
+          <div id="rounds-${a.id}"></div>
+          <div class="row" style="margin-top:8px;">
+            <input placeholder="Stage (e.g. Technical)" id="round-stage-${a.id}" />
+            <input type="date" id="round-date-${a.id}" />
+            <input placeholder="Result (pending / passed / failed)" id="round-result-${a.id}" />
+            <button class="secondary small" style="flex:none;" onclick="handleAddRound(${a.id})">Add round</button>
+          </div>
+        </div>
+      </div>
+    `).join("");
+
+    apps.forEach(a => loadRounds(a.id));
+  }
+
+  async function handleAddApplication() {
+    const errorBox = document.getElementById("application-error");
+    errorBox.style.display = "none";
+
+    const payload = {
+      company_id: parseInt(document.getElementById("app-company").value),
+      job_role: document.getElementById("app-role").value,
+      salary: parseInt(document.getElementById("app-salary").value)
+    };
+
+    try {
+      await apiFetch("/application/", { method: "POST", body: JSON.stringify(payload) });
+      document.getElementById("app-role").value = "";
+      document.getElementById("app-salary").value = "";
+      loadApplications();
+    } catch (err) {
+      errorBox.textContent = err.message;
+      errorBox.style.display = "block";
+    }
+  }
+
+  async function handleStatusChange(id, newStatus) {
+    try {
+      await apiFetch(`/application/${id}/status`, {
+        method: "PATCH",
+        body: JSON.stringify({ status: newStatus })
+      });
+      loadStats();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  async function handleDeleteApplication(id) {
+    try {
+      await apiFetch("/application/" + id, { method: "DELETE" });
+      loadApplications();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  // ---- ROUNDS ----
+  async function loadRounds(applicationId) {
+    try {
+      const app = await apiFetch("/application/" + applicationId);
+      renderRounds(applicationId, app.rounds || []);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  function renderRounds(applicationId, rounds) {
+    const box = document.getElementById("rounds-" + applicationId);
+    if (!box) return;
+    if (!rounds.length) {
+      box.innerHTML = '<span class="empty-note">No rounds added yet.</span>';
+      return;
+    }
+    box.innerHTML = rounds.map(r => `
+      <div class="round-item">
+        <span><strong>${escapeHtml(r.stage)}</strong> &middot; ${new Date(r.date).toLocaleDateString()} &middot; ${escapeHtml(r.result)}</span>
+        <button class="danger small" onclick="handleDeleteRound(${r.id}, ${applicationId})">Delete</button>
+      </div>
+    `).join("");
+  }
+
+  async function handleAddRound(applicationId) {
+    const stage = document.getElementById(`round-stage-${applicationId}`).value;
+    const date = document.getElementById(`round-date-${applicationId}`).value;
+    const result = document.getElementById(`round-result-${applicationId}`).value;
+
+    if (!stage || !date || !result) {
+      alert("Fill in stage, date, and result before adding a round.");
+      return;
+    }
+
+    try {
+      await apiFetch(`/application/${applicationId}/rounds`, {
+        method: "POST",
+        body: JSON.stringify({ stage, date, result })
+      });
+      loadRounds(applicationId);
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  async function handleDeleteRound(roundId, applicationId) {
+    try {
+      await apiFetch("/rounds/" + roundId, { method: "DELETE" });
+      loadRounds(applicationId);
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  // ---- DASHBOARD STATS ----
+  async function loadStats() {
+    try {
+      const stats = await apiFetch("/dashboard/stats");
+      const box = document.getElementById("stats-row");
+      const entries = Object.entries(stats);
+      if (!entries.length) {
+        box.innerHTML = '<span class="empty-note">No applications yet.</span>';
+        return;
+      }
+      box.innerHTML = entries.map(([status, count]) =>
+        `<span class="stat-pill">${escapeHtml(status)}: ${count}</span>`
+      ).join("");
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  // ---- UTIL ----
+  function escapeHtml(str) {
+    if (str === null || str === undefined) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  // ---- INIT ----
+  if (token) {
+    showDashboard();
+  }
+</script>
+
+</body>
+</html>
