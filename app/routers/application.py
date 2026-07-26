@@ -63,12 +63,34 @@ class ApplicationResponse(BaseModel):
 # GET /application/ 
 
 @router.get('/', status_code=status.HTTP_200_OK)
-async def get_all_application(db : db_dependency, user : user_dependency):
+async def get_all_application(
+    db: db_dependency,
+    user: user_dependency,
+    application_status: str = None,
+    sort_by: str = "id",
+    skip: int = 0,
+    limit: int = 10):
+
     application_model = db.query(Application).join(Company) \
         .filter(Application.company_id == Company.id) \
-        .filter(Company.owner_id == user.get('id')).all()
+        .filter(Company.owner_id == user.get('id'))
+
+    if application_status is not None:
+        application_model = application_model.filter(Application.status == application_status)
+
+    if sort_by is not None:
+        if sort_by == "salary":
+            application_model = application_model.order_by(Application.salary)
+        elif sort_by == "id":
+            application_model = application_model.order_by(Application.id)
+        elif sort_by in ["job_role", "job role"]:
+            application_model = application_model.order_by(Application.job_role)
+
+    application_model = application_model.offset(skip).limit(limit).all()
+
     if not application_model:
         raise HTTPException(status_code=404, detail='Application not found')
+    
     return application_model
 
 # GET /application/{id}      
@@ -139,9 +161,3 @@ async def delete_application(db : db_dependency, user : user_dependency, id : in
         raise HTTPException(status_code=404, detail='Item not found')
     db.query(Application).filter(Application.id == id).delete()
     db.commit()
-
-# Work pending here:
-# GET /application/ should also support:
-#   - filtering by status via query param (?status=interviewing)
-#   - sorting by a field (e.g. applied date, once you add one)
-#   - pagination via skip/limit query params
