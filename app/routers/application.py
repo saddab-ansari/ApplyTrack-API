@@ -6,7 +6,7 @@ from fastapi import Depends, APIRouter, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from database import SessionLocal
-from models import Application, Company
+from models import Application, ApplicationStatus, Company
 from .company import user_dependency
 from starlette import status
 
@@ -33,7 +33,7 @@ class ApplicationRequest(BaseModel):
 # No id required - SQLAlchemy does it automatically (faster and safer)
 
 class StatusUpdateRequest(BaseModel):
-    status: str
+    status: ApplicationStatus
 
 # Response schemas — needed so FastAPI actually serializes the nested `rounds`
 # relationship instead of silently dropping it (SQLAlchemy relationships are
