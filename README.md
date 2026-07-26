@@ -5,6 +5,14 @@
 
 A backend API for tracking my own job application pipeline — companies, roles, and interview rounds, built from scratch without a course. Full scope, constraints, and feature breakdown: [`problem_statement.md`](./problem_statement.md)
 
+## 🔗 Links to the deployed project.
+
+**🧠 Backend only link** : https://applytrack-api-3tpm.onrender.com <br>
+*This link takes you to the fastapi swagger UI where you can test all the endpoints!*<br>
+
+**🧠 Full stack link** : https://apply-track-api.vercel.app <br>
+*This link utilizes AI-generated frontend, so that you can experience my work, without fighting with swagger UI. The Backend is untouched.*<br>
+
 ## Data model
 
 <img width="1432" height="885" alt="Flowchart" src="https://github.com/user-attachments/assets/f1fe8938-f387-4344-88ed-1c2726b9eeac" />
@@ -18,7 +26,7 @@ A backend API for tracking my own job application pipeline — companies, roles,
 - [x] Filtering, sorting, pagination
 - [x] Dashboard stats endpoint
 
-*Project Completed - Now in deployment phase.*
+*Status: Completed and Deployed*
 
 ## Setup
 
