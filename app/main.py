@@ -4,8 +4,16 @@ from fastapi import FastAPI
 import models
 from database import engine
 from routers import auth,company,application, interview_round, dashboard
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://your-frontend.vercel.app"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 models.Base.metadata.create_all(bind=engine)
 
