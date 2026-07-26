@@ -16,9 +16,9 @@ A backend API for tracking my own job application pipeline — companies, roles,
 - [x] Application CRUD + status transitions
 - [x] Interview rounds (nested under applications)
 - [x] Filtering, sorting, pagination
-- [ ] Dashboard stats endpoint
+- [x] Dashboard stats endpoint
 
-*Added Interview Rounds CRUD -> Used relationship() for nesting 'rounds' under Applications. Filters, sorting and pagination added! On the last step now.*
+*Project Completed: Now in deploying phase.*
 
 ## Setup
 
