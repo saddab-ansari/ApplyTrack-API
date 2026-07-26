@@ -1,5 +1,7 @@
 # ApplyTrack — Problem Statement
 
+> **Status:** Completed and deployed — see [`README.md`](./README.md) for live links, screenshots, and setup instructions. This document captures the original design brief and constraints I set for myself before writing any code.
+
 ## What I'm building
 
 I'm building a backend API to track my own job application pipeline, companies I've applied to, the specific roles under each company, and every interview round tied to a given application, from OA through offer or rejection.
@@ -61,3 +63,5 @@ User
 ## What "done" looks like
 
 All core features above working end-to-end, testable through Swagger, with a README that includes setup instructions, a tech stack summary, and a live deployment link once it's hosted.
+
+✅ This bar has been met — the project is live and deployed. See `README.md` for the links.
