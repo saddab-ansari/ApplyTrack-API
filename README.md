@@ -42,25 +42,73 @@ Every route above is ownership-scoped — a logged-in user can only ever see or 
 
 `User → Company → Application → InterviewRound` — every level below `User` carries its own foreign key back up the chain, and every read/write query joins through that chain to confirm ownership before touching a row.
 
-## Setup
+## Setup (Windows)
 
-```bash
-git clone <repo-url>
-cd applytrack-api
+These steps assume Python 3.10+ is already installed. Any terminal works — Command Prompt, PowerShell, or Git Bash — with one PowerShell-specific note below.
+
+**1. Get the code**
+
+With Git:
+```
+git clone https://github.com/saddab-ansari/ApplyTrack-API.git
+cd ApplyTrack-API
+```
+
+Without Git: click the green **Code** button on the GitHub repo page → **Download ZIP** → extract it → open a terminal inside the extracted folder.
+
+**2. Create and activate a virtual environment**
+
+```
 python -m venv venv
-source venv/bin/activate    # Windows: venv\Scripts\activate
+```
+
+If Windows doesn't recognize `python`, try `py -m venv venv` instead.
+
+Activate it:
+- **Command Prompt:** `venv\Scripts\activate`
+- **PowerShell:** `venv\Scripts\Activate.ps1`
+
+> If PowerShell blocks this with a "running scripts is disabled" error, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` once, then try activating again.
+
+You'll know it worked when you see `(venv)` at the start of your terminal prompt.
+
+**3. Move into the backend folder and install dependencies**
+
+The backend code lives inside the `app/` folder:
+
+```
+cd app
 pip install -r requirements.txt
 ```
 
-Create a `.env` file (see [`.env.example`](./.env.example)) with your own `SECRET_KEY` and `ALGORITHM`, then:
+**4. Set up your `.env` file**
 
-```bash
+Still inside `app/`, copy the example file:
+
+```
+copy .env.example .env
+```
+
+Open `.env` and fill in your own `SECRET_KEY` and `ALGORITHM` (see `.env.example` for the exact format — `ALGORITHM=HS256` works as-is; generate your own `SECRET_KEY` rather than reusing a shared example).
+
+**5. Run the server**
+
+```
 uvicorn main:app --reload
 ```
+
+Open `http://127.0.0.1:8000/docs` in your browser — that's the Swagger UI, where every endpoint can be tested directly.
+
+### Testing the frontend against your local backend (optional)
+
+`frontend/index.html` has `API_BASE` pointed at the live Render deployment by default, so the hosted Vercel link works instantly for anyone with no setup. To point it at your local server instead, open `frontend/index.html`, find the `API_BASE` line near the top of the `<script>` tag, and temporarily set it to:
+
+```js
+const API_BASE = "http://127.0.0.1:8000";
+```
+
+Then open the file directly in your browser. Don't commit that change — the version in the repo should stay pointed at production so the live demo keeps working for everyone else.
 
 ## Status
 
 All core features complete and deployed. Stretch goals (Alembic migrations, a small `pytest` suite, an admin role endpoint) are documented but not yet built — see [`problem_statement.md`](./problem_statement.md) for the full breakdown.
-
-
-
