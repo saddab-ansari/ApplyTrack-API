@@ -8,7 +8,7 @@ It started as a stress-test: I'd just finished a JWT-authenticated Todo API as a
 
 ## 🔗 Try it live
 
-**Backend only** → https://applytrack-api-3tpm.onrender.com
+**Backend only** → https://applytrack-api-3tpm.onrender.com/docs
 Takes you straight to the FastAPI Swagger UI, where every endpoint is testable directly.
 
 **Full stack** → https://apply-track-api.vercel.app
