@@ -112,3 +112,11 @@ Then open the file directly in your browser. Don't commit that change — the ve
 ## Status
 
 All core features complete and deployed. Stretch goals (Alembic migrations, a small `pytest` suite, an admin role endpoint) are documented but not yet built — see [`problem_statement.md`](./problem_statement.md) for the full breakdown.
+
+## Update: Working on LLM-Powered JD Summarizer & 1-Click Apply
+
+**1. Smart Summarization:** Automatically condenses lengthy job descriptions into quick, readable bullet points focusing on key skills.
+
+**2. Background Data Parsing:** Uses an LLM to silently extract critical details (Company Name, Role, Salary) into structured JSON.
+
+**3. Seamless 'Quick Add':** Go beyond a standard chatbot interface. With a single click, users can instantly save the summarized job and company details directly to their application profile without leaving the tab.
